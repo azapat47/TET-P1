@@ -1,14 +1,30 @@
-version: '1.3'
+version: "3"
+
+volumes:
+  db-data:
+
 services:
   db:
     image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - ./tmp/db:/var/lib/...
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_USER: afzp99
+      MYSQL_PASSWD: abcDEF123*
+      MYSQL_ROOT_PASSWORD: abcDEF123*
+    ports:
+      - "3306:3306"
 
   web:
     build: .
-    command: bundle exec rails s
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - .:/gps-project
+      - ./gps-project:/gps-project
+    ports:
+      - "3000:3000"
     depends_on:
+      - db
+    links:
       - db

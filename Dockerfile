@@ -1,11 +1,12 @@
 FROM ruby:2.5.1
-RUN apt update -qq && apt install -y build-essential  nodejs
+
+MAINTAINER Andrés Felipe Zapata Palacio - azapat47@eafit.edu.co
+
+RUN apt-get update -qq && apt-get install -y apt-utils build-essential  nodejs
 RUN gem install rails -v '5.2.0'
 RUN mkdir /gps-project
 WORKDIR /gps-project
-COPY Gemfile /gps-project/Gemfile
-COPY Gemfile.lock /gps-project/Gemfile.lock
+COPY ./gps-project/Gemfile /gps-project/Gemfile
+COPY ./gps-project/Gemfile.lock /gps-project/Gemfile.lock
 RUN bundle install
-COPY ./gps-project /railsApp
-RUN rake db:create
-RUN rake db:migrate
+COPY ./gps-project /gps-project
