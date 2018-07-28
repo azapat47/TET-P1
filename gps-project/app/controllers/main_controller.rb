@@ -5,6 +5,6 @@ class MainController < ApplicationController
   # GET /coordinates
   # GET /coordinates.json
   def home
-    @coordinates = Coordinate.where("user=?",current_user.id)
+    @coordinates = Coordinate.where("user_id=?",current_user.id)
   end
 end
