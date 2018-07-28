@@ -6,11 +6,24 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+      height: 400px;  /* The height is 400 pixels */
+      width: 100%;  /* The width is the width of the web page */
+      }
+    </style>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+<!--    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->
     <%= yield %>
   </body>
+
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-Im_268EH-xcOdIQks_IQnZEl0eU-wYw&callback=initMap">
+    </script> -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+  </script>
+
 </html>

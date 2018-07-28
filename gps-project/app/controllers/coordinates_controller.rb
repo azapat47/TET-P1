@@ -20,7 +20,7 @@ class CoordinatesController < ApplicationController
   # POST /coordinates.json
   def create
     @coordinate = Coordinate.new(coordinate_params)
-    @coordinate.user = current_user.id
+    @coordinate.user_id = current_user.id
     respond_to do |format|
       if @coordinate.save
         format.html { redirect_to "/" , notice: 'Coordinate was successfully created.' }
@@ -37,7 +37,7 @@ class CoordinatesController < ApplicationController
   def destroy
     @coordinate.destroy
     respond_to do |format|
-      format.html { redirect_to coordinates_url, notice: 'Coordinate was successfully destroyed.' }
+      format.html { redirect_to root_url , notice: 'Coordinate was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

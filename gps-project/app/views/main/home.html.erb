@@ -25,6 +25,59 @@
   </tbody>
 </table>
 
+<h3>My Coordinates</h3>
+<div id="map"></div>
+<script>
+  function initMap() {
+  <!-- Centro -->
+  var point = {lat:<%=@centerLatitude%>, lng:<%=@centerLongitude%>};
+  var map = new google.maps.Map(
+  document.getElementById('map'), {zoom: 13, center: point});
+   
+  <!-- Demas puntos -->
+  <% @coordinates.each do |coordinate| %>
+  var point = {lat:<%= coordinate.latitude%>, lng: <%= coordinate.longitude %>};
+  var marker = new google.maps.Marker({position: point, map: map});
+  <% end %> 
+}
+</script>
 <br>
 
 <%= link_to 'New Coordinate', new_coordinate_path %>
+
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Su navegador no soporta la función GPS.";
+    }
+}
+
+function showPosition(position) {
+  var http = new XMLHttpRequest();
+  var url = "api/v1/coordinates?token=<%= @current_user.token%>";
+  var longitude = position.coords.longitude;
+  var latitude = position.coords.latitude;
+
+
+  http.open("POST", url, true);
+  http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  http.onreadystatechange = function() {
+    if(http.readyState == 4 && http.status == 200) { 
+      alert(http.responseText);
+    }
+  }
+  http.send(JSON.stringify({longitude:longitude, latitude:latitude}));
+//  x.innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude + "<br>URL" + url;
+  window.location.replace("/");
+}
+
+</script>
