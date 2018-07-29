@@ -11,8 +11,8 @@ class MainController < ApplicationController
       @centerLatitude = 6.199733
       @centerLongitude = -75.578686
     else
-      @centerLatitude = @coordinates.first.latitude
-      @centerLongitude = @coordinates.first.longitude
+      @centerLatitude = @coordinates.last.latitude
+      @centerLongitude = @coordinates.last.longitude
     end
   end
 end

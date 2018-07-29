@@ -1,31 +1,7 @@
-<p id="notice"><%= notice %></p>
+<!--p id="notice"><%= notice %></p-->
+<center><h2>Welcome <%= @current_user.email%>, these are your Coordinates</h2>
+<%= button_to "Sign Out", destroy_user_session_path, method: :delete %></center>
 
-<h1>Coordinates</h1>
-<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-<table>
-  <thead>
-    <tr>
-      <th>Longitude</th>
-      <th>Latitude</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @coordinates.each do |coordinate| %>
-      <tr>
-        <td><%= coordinate.longitude %></td>
-        <td><%= coordinate.latitude %></td>
-        <td><%= coordinate.created_at %></td>
-        <td><%= link_to 'Show', coordinate %></td>
-        <td><%= link_to 'Destroy', coordinate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h3>My Coordinates</h3>
 <div id="map"></div>
 <script>
   function initMap() {
@@ -43,31 +19,30 @@
 </script>
 <br>
 
-<%= link_to 'New Coordinate', new_coordinate_path %>
+<!--%= link_to 'New Coordinate', new_coordinate_path %-->
 
 
-<button onclick="getLocation()">Try It</button>
+<button onclick="getLocation()">Register Geolocation manually</button>
 
 <p id="demo"></p>
 
+<%if user_signed_in?%>
 <script>
-var x = document.getElementById("demo");
-
-function getLocation() {
+  var x = document.getElementById("demo");
+  setTimeout(getLocation, 5000);
+  function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+      navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
         x.innerHTML = "Su navegador no soporta la función GPS.";
     }
-}
+  }
 
 function showPosition(position) {
   var http = new XMLHttpRequest();
   var url = "api/v1/coordinates?token=<%= @current_user.token%>";
   var longitude = position.coords.longitude;
   var latitude = position.coords.latitude;
-
-
   http.open("POST", url, true);
   http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   http.onreadystatechange = function() {
@@ -76,8 +51,30 @@ function showPosition(position) {
     }
   }
   http.send(JSON.stringify({longitude:longitude, latitude:latitude}));
-//  x.innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude + "<br>URL" + url;
+  x.innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude + "<br>URL: " + url;
   window.location.replace("/");
 }
-
 </script>
+<%end%>
+
+<table>
+  <thead>
+    <tr>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coordinates.each do |coordinate| %>
+      <tr>
+        <td><%= coordinate.longitude %></td>
+        <td><%= coordinate.latitude %></td>
+        <td><%= coordinate.created_at.hour %>:<%= coordinate.created_at.min %></td>
+        <td><%= link_to 'Destroy', coordinate, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

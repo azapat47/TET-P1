@@ -1,8 +1,16 @@
-<h2>Log in</h2>
+<center><h2>GPS-Project</h2></center>
+
+<style>
+body {
+    background-color: white;
+}
+</style>
+
+<!----------------------------------------------------------------->
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+   &#128231; <%= f.label :email %> <br>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
@@ -22,5 +30,7 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
+
+<br>
 
 <%= render "devise/shared/links" %>
