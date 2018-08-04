@@ -54,3 +54,8 @@ NOTA IMPORTANTE: Este paso no se pudo automatizar en el Dockerfile pues la base 
         end
       end
     end
+    
+## Inconvenientes con el despliegue
+Al no poseer una tarjeta de crédito no pude crear la cuenta en AWS, sin embargo, en su momento intenté desplegar la aplicación en Heroku. En el proceso fue clara la diferencia entre Heroku, que es una plataforma de SaaS (Software as a Service) y Amazon Web Services, que es una plataforma de IaaS (Infraestructure as a Service).
+
+Aunque Heroku permitía montar Containers de Docker haciendo push a su repositorio en git, aquí no existe el concepto de Docker-container, por lo que la aplicación hubiera funcionado si hubiera desplegado la base de datos en la nube, pero por cuestiones de tiempo y conocimientos no pude hacerlo.
