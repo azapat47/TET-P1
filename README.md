@@ -1,19 +1,19 @@
 # Tópicos Especiales en Telemática -P1
-## Autor: Andrés Felipe Zapata Palacio - azapat47@eafit.edu.co
+#### Autor: Andrés Felipe Zapata Palacio - azapat47@eafit.edu.co
 ## Proyecto 1
 ## PreRequisitos
 * Docker
 * Acceso al repositorio
 * Google-Chrome para poder obtener correctamente las coordenadas (Por alguna razón, Firefox impide obtener la posición GPS)
 ## Modo de Uso de la App Web (GPS-Project)
-### 1. Ingresar al sitio por HTTP
+#### 1. Ingresar al sitio por HTTP
     http://azapat47.dis.eafit.edu.co
-### 2. Crear una cuenta o hacer login en caso de ya poseer una
-### 3. Una vez esté en el home de usuario cambiar la URL para utilizar el protocolo HTTPS y dar con ello la confianza al Browser para entregar la información GPS
+#### 2. Crear una cuenta o hacer login en caso de ya poseer una
+#### 3. Una vez esté en el home de usuario cambiar la URL para utilizar el protocolo HTTPS y dar con ello la confianza al Browser para entregar la información GPS
     https://azapat47.dis.eafit.edu.co
-### 4. Para Hacer LogOut volver a HTTP quitando la 's' en el URL
+#### 4. Para Hacer LogOut volver a HTTP quitando la 's' en el URL
     http://azapat47.dis.eafit.edu.co
-### 5. Finalmente, hacer clic en el botón LogOut
+#### 5. Finalmente, hacer clic en el botón LogOut
 
 ## Modo de Uso del Container
 ### 1. Construir las imágenes a partir del Dockerfile y del docker-compose
