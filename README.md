@@ -1,6 +1,5 @@
-# Tópicos Especiales en Telemática -P1
+# Tópicos Especiales en Telemática -Proyecto 1
 #### Autor: Andrés Felipe Zapata Palacio - azapat47@eafit.edu.co
-## Proyecto 1
 ## PreRequisitos
 * Docker
 * Acceso al repositorio
