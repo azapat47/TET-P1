@@ -8,6 +8,8 @@
 ### 1. Construir las imágenes a partir del Dockerfile y del docker-compose
         $ docker-compose build
 ### 2. Ejecuto manualmente la migración y creación de la base de datos
+NOTA IMPORTANTE: Este paso no se pudo automatizar en el Dockerfile pues la base de datos MySQL está montada en un contenedor, por lo que este contenedor no puede crearse hasta no hacer un BUILD.
+
         $ docker-compose run rails db:create
         $ docker-compose run rails db:migrate
 ### 3. Construyo e inicio los containers a partir de las imagenes recien creadas
